@@ -5,7 +5,8 @@ from uuid import uuid4
 from textwrap import dedent
 import requests
 # from urllib.parse import urlparse
-import urlparse
+from urlparse import urlparse
+
 
 from flask import Flask, jsonify, request
 
@@ -148,6 +149,7 @@ class Blockchain(object):
         # Grab and verify the chains from all the nodes in our network
         for node in neighbours:
             response = requests.get('http://{node}/chain'.format(node=node))
+            print(response)
 
             if response.status_code == 200:
                 length = response.json()['length']
